@@ -1,0 +1,20 @@
+<%= render partial:@post %> 
+<h2>Comments</h2>
+<div id="comments">
+		<%= render partial: @post.comments.reverse %>
+</div>
+
+<% if signed_in? %>
+  <%= form_for [@post, Comment.new], remote:true  do |f| %>
+	<p>
+		<%= f.label :body, "New Comment" %><br />
+		<%= f.text_area :body %>
+	</p>
+	<p><%= f.submit "Add Comment" %></p>
+  <% end %>
+  <% if current_user?(Post.find(params[:id]).user) %>
+	<%= link_to 'Edit', edit_post_path(@post) %>
+  |<% end %> 
+<% end %>
+<%= link_to 'Back', posts_path %>
+

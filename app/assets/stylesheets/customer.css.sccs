@@ -1,0 +1,4 @@
+.pull-right{
+	position:fixed;
+	right:30px;
+}
